@@ -1,28 +1,54 @@
 <?php
-header('Content-Type: application/json');
+session_start();
 
-// Получаем JSON-данные из запроса
-$data = json_decode(file_get_contents('php://input'), true);
-
-if (isset($data['rate'])) {
-    $rate = floatval($data['rate']);
-    if ($rate > 0) {
-        // Форматируем дату обновления
-        $now = new DateTime();
-        $formattedTime = $now->format('Y-m-d H:i:s');
-
-        // Формируем данные для сохранения
-        $response = [
-            'exchangeRate' => number_format($rate, 2, '.', ''),
-            'rateUpdateTime' => $formattedTime
-        ];
-
-        // Сохраняем данные в файл
-        file_put_contents('exchangeRate.json', json_encode($response));
-
-        echo json_encode(['success' => true, 'data' => $response]);
-        exit;
-    }
+// Проверяем, вошёл ли пользователь
+if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
+    header("Location: ../../public/admin_login.html");
+    exit;
 }
 
-echo json_encode(['success' => false, 'error' => 'Invalid rate']);
+// Отображаем сообщение после успешного обновления курса
+$success_message = isset($_GET['success']) ? "Курс успешно обновлён!" : "";
+
+?>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Обновление курса</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        .message {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Обновление курса USD → RUB</h2>
+
+    <form action="save_rate.php" method="post">
+        <input type="number" step="0.01" name="exchange_rate" placeholder="Введите курс" required>
+        <button type="submit">Сохранить курс</button>
+    </form>
+
+    <?php if ($success_message): ?>
+        <p class="message"><?= $success_message ?></p>
+    <?php endif; ?>
+
+    <br>
+    <button onclick="window.location.href='admin_dashboard.php'">Назад в админку</button>
+
+</body>
+</html>

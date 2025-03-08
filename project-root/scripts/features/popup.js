@@ -33,7 +33,65 @@
             const { ChevronDown, X, CheckCircle2, ArrowRight, AlertCircle } = lucide;
 
             function SubscriptionPopup() {
-              // Здесь вставить весь код React-компонента
+              const [isOpen, setIsOpen] = useState(true);
+              const [selectedService, setSelectedService] = useState('GPT');
+              const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+              const [formData, setFormData] = useState({
+                fullName: '',
+                phone: '',
+                telegram: ''
+              });
+              const [isSubmitting, setIsSubmitting] = useState(false);
+              const [isSuccess, setIsSuccess] = useState(false);
+              const [error, setError] = useState(null);
+
+              // Доступные сервисы
+              const services = ['GPT', 'Midjourney', 'Spotify', 'Playstation', 'Другое'];
+
+              // Остальной код компонента (обработчики, рендер)...
+              
+              // Основные функции из компонента в components/SubscriptionPopup.jsx
+              const handleServiceSelect = (service) => {
+                setSelectedService(service);
+                setIsDropdownOpen(false);
+              };
+
+              const handleInputChange = (e) => {
+                const { name, value } = e.target;
+                setFormData({
+                  ...formData,
+                  [name]: value
+                });
+              };
+
+              const handleSubmit = async (e) => {
+                e.preventDefault();
+                setIsSubmitting(true);
+                setError(null);
+                
+                try {
+                  // Имитация запроса
+                  await new Promise(resolve => setTimeout(resolve, 1500));
+                  
+                  setIsSuccess(true);
+                  setTimeout(() => {
+                    setIsSuccess(false);
+                    setIsOpen(false);
+                  }, 3000);
+                } catch (err) {
+                  setError('Произошла ошибка при отправке данных. Пожалуйста, попробуйте позже.');
+                } finally {
+                  setIsSubmitting(false);
+                }
+              };
+
+              // Копировать JSX разметку из components/SubscriptionPopup.jsx
+              
+              return (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                  {/* Разметка формы */}
+                </div>
+              );
             }
 
             // Рендерим компонент

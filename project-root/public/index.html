@@ -1026,10 +1026,52 @@
       box-shadow: 0 0 35px rgba(255, 152, 0, 1);
     }
   }
-  </style>
+  .wheel-container {
+    position: relative;
+    width: 500px;
+    margin: 0 auto;
+  }
+
+  .spin-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    transition: all 0.3s ease;
+  }
+
+  .spin-button:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .result-display {
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+    
+    </style>
 </head>
 <body>
-  <div id="header"></div>
+  <div id="public/partials/header"></div>
   <div id="particles-js"></div>
   <div class="floating-circle" style="top: 5%; left: 5%; animation-delay: 0s;"></div>
   <div class="floating-circle" style="top: 20%; left: 80%; animation-delay: 2s;"></div>
@@ -1378,13 +1420,13 @@
   <script>
     // Services data
     const services = [
-      { name: "ChatGPT Plus", logo: "https://images.seeklogo.com/logo-png/42/1/open-ai-logo-png_seeklogo-428037.png", link: "https://project11876151.tilda.ws/gpt-full-info" },
-      { name: "PlayStation Plus", logo: "https://upload.wikimedia.org/wikipedia/commons/3/30/PlayStationPlus.png", link: "https://vcpay.ru/playstation_plus-full-info" },
-      { name: "Spotify Premium", logo: "https://images.seeklogo.com/logo-png/28/1/spotify-logo-png_seeklogo-284480.png", link: "https://project11876151.tilda.ws/spotify-full-info" },
-      { name: "YouTube Premium", logo: "https://images.seeklogo.com/logo-png/36/1/youtube-premium-logo-png_seeklogo-364940.png", link: "https://vcpay.ru/youtube_premium-full-info" },
-      { name: "Apple iCloud+", logo: "https://images.seeklogo.com/logo-png/42/1/apple-icloud-logo-png_seeklogo-426388.png", link: "https://vcpay.ru/apple_icloudampone" },
-      { name: "Apple One", logo: "https://images.seeklogo.com/logo-png/39/1/apple-one-logo-png_seeklogo-391015.png", link: "https://vcpay.ru/apple_icloudampone" },
-      { name: "Zoom Premium", logo: "https://images.seeklogo.com/logo-png/30/1/zoom-logo-png_seeklogo-306629.png", link: "https://vcpay.ru/zoom-full-info" },
+      { name: "ChatGPT Plus", logo: "https://images.seeklogo.com/logo-png/42/1/open-ai-logo-png_seeklogo-428037.png", link: "/gpt-full-info" },
+      { name: "PlayStation Plus", logo: "https://upload.wikimedia.org/wikipedia/commons/3/30/PlayStationPlus.png", link: "/playstation_plus-full-info" },
+      { name: "Spotify Premium", logo: "https://images.seeklogo.com/logo-png/28/1/spotify-logo-png_seeklogo-284480.png", link: "/spotify-full-info" },
+      { name: "YouTube Premium", logo: "https://images.seeklogo.com/logo-png/36/1/youtube-premium-logo-png_seeklogo-364940.png", link: "/youtube_premium-full-info" },
+      { name: "Apple iCloud+", logo: "https://images.seeklogo.com/logo-png/42/1/apple-icloud-logo-png_seeklogo-426388.png", link: "/apple_icloudampone" },
+      { name: "Apple One", logo: "https://images.seeklogo.com/logo-png/39/1/apple-one-logo-png_seeklogo-391015.png", link: "/apple_icloudampone" },
+      { name: "Zoom Premium", logo: "https://images.seeklogo.com/logo-png/30/1/zoom-logo-png_seeklogo-306629.png", link: "zoom-full-info" },
       { name: "Netflix", logo: "https://images.seeklogo.com/logo-png/25/1/netflix-logo-png_seeklogo-256429.png", link: "https://t.me/m/rXfYQVibN2Iy" },
       { name: "Adobe Creative Cloud", logo: "https://images.seeklogo.com/logo-png/0/1/adobe-logo-png_seeklogo-3452.png", link: "https://t.me/m/rXfYQVibN2Iy" },
       { name: "Canva Pro", logo: "https://images.seeklogo.com/logo-png/43/1/canva-logo-png_seeklogo-438258.png", link: "https://t.me/m/rXfYQVibN2Iy" },
@@ -1681,8 +1723,50 @@
       setInterval(updateTimer, 1000);
     }
   </script>
-  <div id="footer"></div>
+  <div id="public/partials/footer"></div>
 
-  <script src="scripts/main.js"></script>
+  <script src="/scripts/main.js"></script>
+    <!-- Добавить в раздел "Специальные предложения" или создать новый раздел -->
+  <section class="discount-section" id="discount">
+    <div class="container">
+      <div class="text-center">
+        <h2>Колесо скидок</h2>
+        <p>Испытайте удачу и получите персональную скидку!</p>
+      </div>
+      <div class="wheel-container">
+        <canvas id="wheel-canvas" width="500" height="500"></canvas>
+        <button id="spin-button" class="spin-button">Вращать</button>
+        <div id="result" class="result-display"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Добавить скрипт в конец body -->
+  <script src="/scripts/features/VCPay Discount Wheel.js"></script>
+
+  
+  <div id="support-chat" class="chat-container" style="display: none; position: fixed; bottom: 20px; right: 20px; z-index: 1000;"></div>
+
+  <button id="chat-toggle" style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #3498db, #2980b9); color: white; border: none; font-size: 24px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); z-index: 999;">
+    <i class="fas fa-comments"></i>
+  </button>
+
+  <script>
+    document.getElementById('chat-toggle').addEventListener('click', function() {
+      const chatContainer = document.getElementById('support-chat');
+      if (chatContainer.style.display === 'none') {
+        chatContainer.style.display = 'block';
+        this.style.display = 'none';
+        
+        // Загружаем скрипт чата, если он еще не загружен
+        if (!window.chatLoaded) {
+          const script = document.createElement('script');
+          script.src = '/scripts/features/Chat Interface for VCPay.js';
+          document.body.appendChild(script);
+          window.chatLoaded = true;
+        }
+      }
+    });
+  </script>
 </body>
 </html>

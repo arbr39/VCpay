@@ -1,6 +1,8 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
+require('dotenv').config(); // Загрузка переменных окружения
+
 const app = express();
 const PORT = 3000;
 
@@ -8,9 +10,10 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-// Конфигурация Telegram
-const BOT_TOKEN = '7943935857:AAGT1uyrkZCIT0qQGc4ouN89cMUSnBZGDik';
-const CHAT_ID = '7255486015';
+// Конфигурация Telegram из переменных окружения
+const BOT_TOKEN = process.env.BOT_TOKEN;
+const CHAT_ID = process.env.CHAT_ID;
+
 
 // API-эндпоинт для отправки сообщений
 app.post('/api/send-message', async (req, res) => {
