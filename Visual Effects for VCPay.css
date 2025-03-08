@@ -1,0 +1,520 @@
+/* Базовые неоморфные переменные */
+:root {
+  --neumorphic-bg: #e6e7ee;
+  --neumorphic-light-shadow: rgba(255, 255, 255, 0.8);
+  --neumorphic-dark-shadow: rgba(174, 174, 192, 0.4);
+  --neumorphic-flat: 0px 0px 0px rgba(255, 255, 255, 0.8), 0px 0px 0px rgba(174, 174, 192, 0.4);
+  --neumorphic-pressed: inset 3px 3px 6px rgba(174, 174, 192, 0.4), inset -3px -3px 6px rgba(255, 255, 255, 0.8);
+  --neumorphic-shadow: 5px 5px 10px rgba(174, 174, 192, 0.4), -5px -5px 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Градиентные переменные */
+:root {
+  --gradient-primary: linear-gradient(135deg, #3498db, #2980b9);
+  --gradient-success: linear-gradient(135deg, #2ecc71, #27ae60);
+  --gradient-warning: linear-gradient(135deg, #f1c40f, #f39c12);
+  --gradient-danger: linear-gradient(135deg, #e74c3c, #c0392b);
+  --gradient-purple: linear-gradient(135deg, #9b59b6, #8e44ad);
+  --gradient-dark: linear-gradient(135deg, #34495e, #2c3e50);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+}
+
+/* Неоморфные карточки */
+.neumorphic-card {
+  background-color: var(--neumorphic-bg);
+  border-radius: 20px;
+  box-shadow: var(--neumorphic-shadow);
+  padding: 25px;
+  transition: all 0.3s ease;
+}
+
+.neumorphic-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 8px 8px 16px rgba(174, 174, 192, 0.5), -8px -8px 16px rgba(255, 255, 255, 0.9);
+}
+
+/* Вариации неоморфных карточек */
+.neumorphic-card.concave {
+  border-radius: 25px;
+  background: var(--neumorphic-bg);
+  box-shadow: inset 5px 5px 10px var(--neumorphic-dark-shadow), 
+              inset -5px -5px 10px var(--neumorphic-light-shadow);
+}
+
+.neumorphic-card.convex {
+  border-radius: 25px;
+  background: linear-gradient(145deg, #cecfd8, #f5f6ff);
+  box-shadow: 5px 5px 10px var(--neumorphic-dark-shadow), 
+              -5px -5px 10px var(--neumorphic-light-shadow);
+}
+
+/* Неоморфные кнопки */
+.neumorphic-button {
+  position: relative;
+  background-color: var(--neumorphic-bg);
+  color: #2c3e50;
+  font-weight: 600;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 15px;
+  box-shadow: var(--neumorphic-shadow);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.neumorphic-button:hover {
+  color: #3498db;
+}
+
+.neumorphic-button:active {
+  box-shadow: var(--neumorphic-pressed);
+}
+
+/* Рябь при клике на кнопку */
+.neumorphic-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  border-radius: 100%;
+  transform: scale(1, 1) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+}
+
+.neumorphic-button:focus:not(:active)::after {
+  animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0, 0);
+    opacity: 0.5;
+  }
+  20% {
+    transform: scale(25, 25);
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(40, 40);
+  }
+}
+
+/* Неоморфные переключатели */
+.neumorphic-switch {
+  position: relative;
+  width: 60px;
+  height: 32px;
+  border-radius: 16px;
+  background-color: var(--neumorphic-bg);
+  box-shadow: inset 3px 3px 5px var(--neumorphic-dark-shadow), 
+              inset -3px -3px 5px var(--neumorphic-light-shadow);
+  cursor: pointer;
+}
+
+.neumorphic-switch::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #e6e7ee;
+  box-shadow: 3px 3px 5px var(--neumorphic-dark-shadow), 
+              -3px -3px 5px var(--neumorphic-light-shadow);
+  transition: all 0.3s ease;
+}
+
+.neumorphic-switch.active {
+  background-color: #3498db;
+}
+
+.neumorphic-switch.active::after {
+  left: 32px;
+  background-color: #fcfcfc;
+}
+
+/* Неоморфные поля ввода */
+.neumorphic-input {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--neumorphic-bg);
+  box-shadow: inset 3px 3px 5px var(--neumorphic-dark-shadow), 
+              inset -3px -3px 5px var(--neumorphic-light-shadow);
+  font-size: 16px;
+  color: #2c3e50;
+  transition: all 0.3s ease;
+}
+
+.neumorphic-input:focus {
+  outline: none;
+  box-shadow: inset 4px 4px 6px var(--neumorphic-dark-shadow), 
+              inset -4px -4px 6px var(--neumorphic-light-shadow);
+}
+
+/* Градиентные кнопки */
+.gradient-button {
+  position: relative;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gradient-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.gradient-button:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Градиентные кнопки с эффектом свечения */
+.gradient-button.glow:hover {
+  box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
+}
+
+/* Вариации градиентных кнопок */
+.gradient-button.primary {
+  background: var(--gradient-primary);
+}
+
+.gradient-button.success {
+  background: var(--gradient-success);
+}
+
+.gradient-button.warning {
+  background: var(--gradient-warning);
+}
+
+.gradient-button.danger {
+  background: var(--gradient-danger);
+}
+
+.gradient-button.purple {
+  background: var(--gradient-purple);
+}
+
+/* Градиентные карточки */
+.gradient-card {
+  position: relative;
+  border-radius: 20px;
+  padding: 25px;
+  color: white;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.gradient-card.primary {
+  background: var(--gradient-primary);
+}
+
+.gradient-card.success {
+  background: var(--gradient-success);
+}
+
+.gradient-card.purple {
+  background: var(--gradient-purple);
+}
+
+.gradient-card.dark {
+  background: var(--gradient-dark);
+}
+
+.gradient-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Карточка с стеклянным эффектом */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+  padding: 25px;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(31, 38, 135, 0.15);
+}
+
+/* Градиент с эффектом движения */
+.animated-gradient {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Анимации микровзаимодействий */
+
+/* Микроанимация для иконок при наведении */
+.micro-icon {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.micro-icon:hover {
+  transform: scale(1.2);
+  color: #3498db;
+}
+
+/* Пульсация для привлечения внимания */
+.pulse-effect {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+  }
+  
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+  }
+  
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+  }
+}
+
+/* Микроанимации для карточек при наведении */
+.card-hover-effect {
+  transition: all 0.3s ease;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-10px) scale(1.02);
+}
+
+/* Эффект всплытия элемента */
+.float-effect {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Эффект подсветки */
+.highlight-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.highlight-effect::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+  transform: rotate(30deg);
+  transition: all 0.8s ease;
+  opacity: 0;
+}
+
+.highlight-effect:hover::after {
+  opacity: 1;
+  transform: rotate(30deg) translate(100%, 0);
+}
+
+/* Анимация появления с прозрачностью */
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Анимация поэтапного появления дочерних элементов */
+.stagger-fade-in > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+.stagger-fade-in > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-fade-in > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-fade-in > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-fade-in > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-fade-in > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-fade-in > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* Анимация кнопок при нажатии */
+.click-effect {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.click-effect:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Анимация загрузки */
+.loading-dots {
+  display: inline-flex;
+  align-items: center;
+}
+
+.loading-dots span {
+  width: 8px;
+  height: 8px;
+  margin: 0 3px;
+  background-color: #3498db;
+  border-radius: 50%;
+  display: inline-block;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.loading-dots span:nth-child(1) { animation-delay: -0.32s; }
+.loading-dots span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+/* Эффект написания текста */
+.typing-effect {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #3498db;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #3498db }
+}
+
+/* Микровзаимодействия для навигации */
+.nav-item {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #3498db;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+.nav-item:hover {
+  color: #3498db;
+}
+
+.nav-item:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Микровзаимодействия для цен */
+.price-tag {
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.price-tag:hover {
+  transform: scale(1.1);
+}
+
+.price-tag:hover::before {
+  content: 'Лучшая цена!';
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #3498db;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  opacity: 0;
+  animation: fadeInOut 1.5s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, 10px); }
+  20% { opacity: 1; transform: translate(-50%, 0); }
+  80% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -10px); }
+}

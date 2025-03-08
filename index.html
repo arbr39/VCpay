@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VCPay - Оплачивайте зарубежные сервисы и подписки в рублях</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- External Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  
+  <style>
+    /* Variables */
+    :root {
+      --primary: #0056b3;
+      --primary-dark: #004085;
+      --primary-light: #e6f0ff;
+      --secondary: #6c757d;
+      --secondary-light: #f8f9fa;
+      --accent: #FF9800;
+      --accent-light: #FFF3E0;
+      --success: #FF9800;
+      --dark: #212529;
+      --gray-dark: #343a40;
+      --gray: #6c757d;
+      --gray-light: #f8f9fa;
+      --gray-medium: #e9ecef;
+      --white: #ffffff;
+      --section-padding: 5rem 0;
+      --border-radius: 10px;
+      --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease;
+    }
+
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--gray-dark);
+      background-color: var(--gray-light);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: var(--section-padding);
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    a:hover {
+      color: var(--primary-dark);
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: middle;
+      user-select: none;
+      border: 2px solid transparent;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      border-radius: 30px;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      color: #ffffff !important;
+      background-color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      border-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 86, 179, 0.3);
+      animation: pulse 1.5s infinite;
+    }
+
+    .btn-secondary {
+      color: #ffffff !important;
+      background-color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-secondary:hover {
+      background-color: #F57C00;
+      border-color: #F57C00;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255, 152, 0, 0.3);
+    }
+
+    .btn-outline {
+      color: var(--primary);
+      background-color: transparent;
+      border-color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      color: var(--white);
+      background-color: var(--primary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 86, 179, 0.2);
+    }
+
+    .btn-lg {
+      padding: 1rem 2rem;
+      font-size: 1.25rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #ffffff, #f2f5fa);
+      padding: 5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 500px;
+      height: 500px;
+    }
+    
+    #particles-js {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    
+    .hero-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .hero-text {
+      flex: 1;
+      max-width: 600px;
+      text-align: center;
+      margin: 0 auto;
+    }
+    
+    .hero-title {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+      color: #212529;
+    }
+    
+    .hero-title span {
+      color: #FF9800;
+    }
+    
+    #typed {
+      display: inline-block;
+      min-width: 150px;
+    }
+    
+    .hero-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #495057;
+    }
+    
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .hero-image {
+      flex: 1;
+      text-align: center;
+    }
+    
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    /* Deal of the Day */
+    .deal-of-day {
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      margin-top: 20px;
+      position: relative;
+      z-index: 10;
+      display: block;
+    }
+    
+    .services-carousel-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .services-carousel-header h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    
+    .deal-info {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .deal-timer {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    
+    .featured-service-container {
+      display: flex;
+      justify-content: center;
+      padding: 2rem 0;
+    }
+    
+    .featured-service {
+      text-align: center;
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      background-color: var(--primary-light);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      max-width: 300px;
+      animation: bounce 2s infinite ease-in-out;
+    }
+    
+    .featured-service:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .featured-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+    
+    .featured-name {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    
+    .featured-discount {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    
+    .featured-cta {
+      margin-top: 1rem;
+    }
+    
+    /* Pricing Section */
+    .pricing-section {
+      padding: 5rem 0;
+      background-color: var(--white);
+    }
+    
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .pricing-card {
+      background-color: var(--gray-light);
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    
+    .pricing-card:hover {
+      transform: rotateY(10deg) scale(1.05);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+    
+    .pricing-header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--white);
+      padding: 1.5rem;
+      text-align: center;
+    }
+    
+    .pricing-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      font-size: 1.5rem;
+    }
+    
+    .pricing-header h3 {
+      margin-bottom: 0;
+      font-size: 1.3rem;
+      color: var(--white);
+    }
+    
+    .pricing-content {
+      padding: 1.5rem;
+    }
+    
+    .pricing-value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    
+    .pricing-desc {
+      text-align: center;
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+    
+    .pricing-list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .pricing-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--gray-medium);
+      font-size: 0.95rem;
+    }
+    
+    .pricing-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .pricing-note {
+      margin-top: 3rem;
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+    
+    /* Calculator Section */
+    .calculator-section {
+      padding: 5rem 0;
+    }
+    
+    .calculator-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .calculator-form {
+      flex: 1;
+      min-width: 300px;
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    
+    .form-control {
+      display: block;
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+      color: var(--gray-dark);
+      background-color: var(--white);
+      background-clip: padding-box;
+      border: 1px solid var(--gray-medium);
+      border-radius: 0.5rem;
+      transition: var(--transition);
+    }
+    
+    .form-control:focus {
+      border-color: var(--primary);
+      outline: 0;
+      box-shadow: 0 0 0 0.25rem rgba(0, 86, 179, 0.25);
+    }
+    
+    .calculator-results {
+      flex: 1;
+      min-width: 300px;
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+    
+    .result-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--gray-medium);
+    }
+    
+    .result-item:last-child {
+      border-bottom: none;
+    }
+    
+    .result-label {
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+    }
+    
+    .info-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.75rem;
+      font-weight: 700;
+      margin-left: 0.5rem;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .tooltip-content {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--dark);
+      color: var(--white);
+      padding: 0.75rem 1rem;
+      border-radius: var(--border-radius);
+      font-weight: 400;
+      font-size: 0.875rem;
+      width: 200px;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s, visibility 0.3s;
+      z-index: 100;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      pointer-events: none;
+    }
+    
+    .tooltip-content::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 6px;
+      border-style: solid;
+      border-color: var(--dark) transparent transparent transparent;
+    }
+    
+    .info-icon:hover .tooltip-content {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    .result-value {
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .result-total {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    
+    .progress-container {
+      margin-top: 1.5rem;
+      position: relative;
+    }
+    
+    .progress-bar {
+      height: 32px;
+      background-color: var(--gray-light);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      margin-bottom: 0.5rem;
+      display: flex;
+    }
+    
+    .progress-base {
+      height: 100%;
+      background-color: var(--primary);
+      transition: width 0.5s;
+      position: relative;
+    }
+    
+    .progress-markup {
+      height: 100%;
+      background-color: var(--accent);
+      transition: width 0.5s;
+      position: relative;
+    }
+    
+    .progress-label {
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.85rem;
+      color: var(--gray-dark);
+      white-space: nowrap;
+    }
+    
+    .progress-value {
+      position: absolute;
+      bottom: -24px;
+      right: 0;
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: var(--gray-dark);
+    }
+    
+    .exchange-rate-display {
+      background-color: var(--primary-light);
+      border-radius: var(--border-radius);
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .rate-label {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--primary-dark);
+    }
+    
+    .rate-value {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+    
+    .rate-update {
+      font-size: 0.75rem;
+      color: var(--gray);
+      margin-top: 0.25rem;
+    }
+    
+    /* Services Section */
+    .services-section {
+      background-color: var(--gray-light);
+      padding: 5rem 0;
+    }
+    
+    .services-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .services-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .services-subtitle {
+      font-size: 1.1rem;
+      color: var(--gray);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .service-card {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: var(--box-shadow);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+    }
+    
+    .service-card:hover {
+      transform: scale(1.1) translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    }
+    
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+    
+    .service-name {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .services-more {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    
+    /* How it Works Section */
+    .how-it-works {
+      padding: 5rem 0;
+      background-color: var(--white);
+    }
+    
+    .how-it-works-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .steps-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+    
+    .step-card {
+      flex: 1;
+      min-width: 250px;
+      max-width: 300px;
+      text-align: center;
+      padding: 2rem;
+      background-color: var(--gray-light);
+      border-radius: var(--border-radius);
+      position: relative;
+    }
+    
+    .step-number {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 40px;
+      background-color: var(--primary);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+    
+    .step-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    
+    .step-title {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .step-description {
+      font-size: 0.95rem;
+      color: var(--gray);
+    }
+    
+    /* Testimonials Section */
+    .testimonials {
+      background-color: var(--primary-light);
+      padding: 5rem 0;
+    }
+    
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .testimonials-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    
+    .testimonial-card {
+      flex: 1;
+      min-width: 300px;
+      max-width: 350px;
+      background-color: var(--white);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+    }
+    
+    .testimonial-text {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .author-initial {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    
+    .author-info {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .author-name {
+      font-weight: 600;
+    }
+    
+    .author-title {
+      font-size: 0.875rem;
+      color: var(--gray);
+    }
+    
+    .testimonial-rating {
+      color: #ffc107;
+      margin-top: 0.5rem;
+    }
+    
+    /* Features Section */
+    .features {
+      padding: 4rem 0;
+      background-color: var(--white);
+    }
+    
+    .features-header {
+      margin-bottom: 3rem;
+    }
+    
+    .features-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+    
+    .feature-item {
+      text-align: center;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      background-color: var(--gray-light);
+      transition: var(--transition);
+    }
+    
+    .feature-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--box-shadow);
+    }
+    
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 1.5rem;
+    }
+    
+    .feature-item h3 {
+      margin-bottom: 1rem;
+      font-size: 1.3rem;
+    }
+    
+    .feature-item p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    
+    /* CTA Section */
+    .cta-section {
+      padding: 5rem 0;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--white);
+      text-align: center;
+    }
+    
+    .cta-title {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .cta-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    /* Animations */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    @keyframes glow {
+      from { box-shadow: 0 0 10px #0056b3; }
+      to { box-shadow: 0 0 20px #FF9800; }
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .hero-content {
+        flex-direction: column;
+      }
+      
+      .hero-text, .hero-image {
+        max-width: 100%;
+        text-align: center;
+      }
+      
+      .hero-cta {
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      h1, .hero-title {
+        font-size: 2rem;
+      }
+      
+      h2, .services-title, .cta-title {
+        font-size: 1.8rem;
+      }
+      
+      .hero {
+        padding: 3rem 0;
+      }
+      
+      .deal-of-day {
+        margin-top: 0;
+      }
+      
+      .services-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+      }
+      
+      .stats-container, .steps-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .step-card {
+        max-width: 100%;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .btn {
+        display: block;
+        width: 100%;
+      }
+      
+      .hero-cta {
+        flex-direction: column;
+      }
+      
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+      .floating-circle {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(255, 152, 0, 0.7);
+    border-radius: 50%;
+    box-shadow: 0 0 25px rgba(255, 152, 0, 0.9);
+    animation: floatAnimation 6s ease-in-out infinite alternate, glow 2s infinite alternate;
+    z-index: 0;
+  }
+
+  @keyframes floatAnimation {
+    from {
+      transform: translateY(-20px);
+    }
+    to {
+      transform: translateY(20px);
+    }
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 15px rgba(255, 152, 0, 0.5);
+    }
+    to {
+      box-shadow: 0 0 35px rgba(255, 152, 0, 1);
+    }
+  }
+  </style>
+</head>
+<body>
+  <div id="header"></div>
+  <div id="particles-js"></div>
+  <div class="floating-circle" style="top: 5%; left: 5%; animation-delay: 0s;"></div>
+  <div class="floating-circle" style="top: 20%; left: 80%; animation-delay: 2s;"></div>
+  <div class="floating-circle" style="top: 40%; left: 25%; animation-delay: 4s;"></div>
+  <div class="floating-circle" style="top: 60%; left: 70%; animation-delay: 1s;"></div>
+  <div class="floating-circle" style="top: 80%; left: 10%; animation-delay: 3s;"></div>
+  <div class="floating-circle" style="top: 85%; left: 60%; animation-delay: 1s;"></div>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title animate__animated animate__fadeInDown">
+          Оплачивайте <span id="typed"></span> в рублях!
+        </h1>
+        <p class="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+          Наш удобный сервис позволяет вам оплачивать подписки, делать покупки и отправлять деньги из любой точки мира, используя рубли.
+        </p>
+        <div class="hero-cta animate__animated animate__fadeInUp animate__delay-2s">
+          <a href="#calculator" class="btn btn-lg btn-primary">Рассчитать стоимость</a>
+          <a href="#how-it-works" class="btn btn-lg btn-outline">Как это работает</a>
+        </div>
+      </div>
+      <div class="hero-image animate__animated animate__zoomIn animate__delay-2s">
+        <img src="https://img.freepik.com/free-vector/hands-holding-credit-card-mobile-phone-with-banking-app-person-paying-with-bank-card-transferring-money-shopping-online-flat-vector-illustration-payment-finance-concept_74855-24760.jpg?t=st=1741200459~exp=1741204059~hmac=45760ea6e5a427b5b16d26a2ca960da6682ada4e5817b58199ce938009705014&w=740" alt="Платежи онлайн">
+      </div>
+    </div>
+  </section>
+
+  <!-- Deal of the Day -->
+  <div class="container">
+    <div class="deal-of-day" data-aos="flip-up">
+      <div class="services-carousel-header">
+        <h3>Приложение дня</h3>
+        <p class="deal-info">Каждый день мы выбираем одно приложение и предлагаем скидку!</p>
+      </div>
+      <div id="featured-service-container" class="featured-service-container"></div>
+      <div class="deal-timer" id="deal-timer">Акция заканчивается через: --:--:--</div>
+    </div>
+  </div>
+
+  <!-- Pricing Section -->
+  <section class="pricing-section" id="pricing" data-aos="zoom-in">
+    <div class="container">
+      <div class="text-center">
+        <h2>Ценовая политика</h2>
+        <p>Прозрачные и понятные тарифы для всех категорий услуг</p>
+      </div>
+      <div class="pricing-cards">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="pricing-icon">
+              <i class="fas fa-hotel"></i>
+            </div>
+            <h3>Отели / Авиабилеты</h3>
+          </div>
+          <div class="pricing-content">
+            <div class="pricing-value">Наценка: 10%</div>
+            <p class="pricing-desc">Для бронирования отелей, покупки авиабилетов и других туристических услуг.</p>
+          </div>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="pricing-icon">
+              <i class="fas fa-desktop"></i>
+            </div>
+            <h3>Сервисы / Подписки</h3>
+          </div>
+          <div class="pricing-content">
+            <div class="pricing-value">Наценка: 20%</div>
+            <p class="pricing-desc">Подходит для Spotify, Netflix, ChatGPT Plus и других онлайн-сервисов.</p>
+          </div>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="pricing-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Экспресс / VIP</h3>
+          </div>
+          <div class="pricing-content">
+            <div class="pricing-value">Наценка: 25%</div>
+            <p class="pricing-desc">Срочные и нестандартные платежи, требующие особого внимания.</p>
+          </div>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <div class="pricing-icon">
+              <i class="fas fa-money-bill-wave"></i>
+            </div>
+            <h3>Всё остальное</h3>
+          </div>
+          <div class="pricing-content">
+            <ul class="pricing-list">
+              <li><strong>≤ 2000 руб.:</strong> фикс. 270 руб.</li>
+              <li><strong>2001–9000 руб.:</strong> 20%</li>
+              <li><strong>> 9000 руб.:</strong> 15%</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="pricing-note text-center">
+        <p>Курс обновляется ежедневно, возможны колебания. Финальная сумма может быть скорректирована при больших транзакциях.</p>
+        <p><strong>Итоговую стоимость уточняйте у менеджера.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section class="calculator-section" id="calculator">
+    <div class="container">
+      <div class="text-center">
+        <h2>Рассчитайте стоимость</h2>
+        <p>Узнайте стоимость оплаты выбранного сервиса в рублях с учетом актуального курса</p>
+      </div>
+      <div class="calculator-container">
+        <div class="calculator-form">
+          <div class="exchange-rate-display">
+            <div>
+              <div class="rate-label">Текущий курс USD → RUB:</div>
+              <div class="rate-update">Обновлено: <span id="rate-update-time">5 марта 2025, 14:20</span></div>
+            </div>
+            <div class="rate-value" id="current-rate">106.79 ₽</div>
+          </div>
+          <div class="form-group">
+            <label for="usdInput" class="form-label">Введите сумму в долларах (USD)</label>
+            <input type="text" id="usdInput" class="form-control" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label for="categorySelect" class="form-label">Выберите категорию</label>
+            <select id="categorySelect" class="form-control">
+              <option value="other">Оплата в USD</option>
+              <option value="hotels">Отели и авиабилеты</option>
+              <option value="services">Оплата сервиса/подписки</option>
+              <option value="vip">Экспресс / VIP</option>
+            </select>
+          </div>
+          <button onclick="calculatePrice()" class="btn btn-primary">Рассчитать</button>
+        </div>
+        <div class="calculator-results">
+          <h3>Результат расчета</h3>
+          <div class="result-item">
+            <div class="result-label">Базовая сумма:</div>
+            <div class="result-value" id="baseAmount">—</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">
+              Наценка:
+              <div class="info-icon">i
+                <div class="tooltip-content" id="markupTooltipContent">
+                  Зависит от категории и суммы платежа.
+                </div>
+              </div>
+            </div>
+            <div class="result-value" id="markupAmount">—</div>
+          </div>
+          <div class="result-item">
+            <div class="result-label">Итоговая сумма:</div>
+            <div class="result-value result-total" id="finalAmount">—</div>
+          </div>
+          <div class="progress-container" id="progressBars" style="display: none;">
+            <div class="progress-bar">
+              <div class="progress-base" id="baseBar">
+                <div class="progress-label" id="baseLabel">Базовая сумма</div>
+                <div class="progress-value" id="baseValue">0%</div>
+              </div>
+              <div class="progress-markup" id="markupBar">
+                <div class="progress-label" id="markupLabel">Наценка</div>
+                <div class="progress-value" id="markupValue">0%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section" id="services" data-aos="fade-up">
+    <div class="container">
+      <div class="services-header">
+        <h2 class="services-title">Оплачиваемые сервисы</h2>
+        <p class="services-subtitle">Выбирайте популярные зарубежные онлайн-сервисы. Всё на одной странице для вашего удобства!</p>
+      </div>
+      <div class="services-grid" id="services-grid">
+        <!-- Сервисы будут добавлены через JavaScript -->
+      </div>
+      <div class="services-more">
+        <button id="showMoreServices" class="btn btn-outline">Показать ещё</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it Works Section -->
+  <section class="how-it-works" id="how-it-works" data-aos="fade-right">
+    <div class="container">
+      <div class="how-it-works-header">
+        <h2>Как это работает?</h2>
+        <p>Всего 4 простых шага для получения доступа к нужному сервису</p>
+      </div>
+      <div class="steps-container">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <i class="fas fa-file-alt step-icon"></i>
+          <h3 class="step-title">Вы оставляете заявку</h3>
+          <p class="step-description">Через сайт или напишите нам напрямую в Telegram. Мы обработаем вашу заявку в течение 15 минут.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <i class="fas fa-comments step-icon"></i>
+          <h3 class="step-title">Согласуете детали</h3>
+          <p class="step-description">Наш менеджер уточнит все детали и предложит удобный тариф. Вы передаете данные для подключения.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <i class="fas fa-credit-card step-icon"></i>
+          <h3 class="step-title">Совершаете оплату</h3>
+          <p class="step-description">После получения оплаты мы сразу же оплачиваем ваш заказ через Revolut или Wise.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <i class="fas fa-check-circle step-icon"></i>
+          <h3 class="step-title">Доступ готов!</h3>
+          <p class="step-description">Через 10-15 минут после оплаты вы получаете полный доступ к выбранному сервису. Всё быстро, удобно и безопасно.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials" data-aos="fade-left">
+    <div class="container">
+      <div class="testimonials-header">
+        <h2>Что о нас говорят клиенты</h2>
+        <p>Отзывы наших клиентов</p>
+      </div>
+      <div class="testimonials-container">
+        <div class="testimonial-card">
+          <p class="testimonial-text">"Очень удобный сервис! Наконец-то смог оплатить ChatGPT Plus и YouTube Premium без лишних хлопот. Всё сделали быстро, даже быстрее, чем обещали."</p>
+          <div class="testimonial-author">
+            <div class="author-initial">А</div>
+            <div class="author-info">
+              <span class="author-name">Антон</span>
+              <span class="author-title">Программист</span>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">"Оперативно помогли с оплатой Netflix и Spotify. Никаких проблем, всё четко и прозрачно. Рекомендую всем, кто не хочет заморачиваться с иностранными картами."</p>
+          <div class="testimonial-author">
+            <div class="author-initial">Е</div>
+            <div class="author-info">
+              <span class="author-name">Елена</span>
+              <span class="author-title">Маркетолог</span>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-text">"Отличный сервис! Быстро и без лишних вопросов. Бронировал отель через них, всё прошло гладко, сэкономил на комиссиях по сравнению с другими сервисами."</p>
+          <div class="testimonial-author">
+            <div class="author-initial">М</div>
+            <div class="author-info">
+              <span class="author-name">Михаил</span>
+              <span class="author-title">Предприниматель</span>
+              <div class="testimonial-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" data-aos="fade-up">
+    <div class="container">
+      <div class="features-header text-center">
+        <h2>Почему выбирают VCPay</h2>
+        <p>Мы предлагаем ряд значимых преимуществ для наших клиентов</p>
+      </div>
+      <div class="features-container">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3>Быстрый старт</h3>
+          <p>Новый подход без бюрократии и лишних процедур. Оплачивайте сервисы в течение 15 минут после обращения.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Безопасно и надежно</h3>
+          <p>Используем современные технологии защиты данных и надежные платежные шлюзы для каждой транзакции.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3>Персональный подход</h3>
+          <p>Мы ценим каждого клиента и предоставляем индивидуальное сопровождение на всех этапах.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">
+            <i class="fas fa-percent"></i>
+          </div>
+          <h3>Прозрачные тарифы</h3>
+          <p>Честная система комиссий без скрытых платежей. Вы всегда знаете итоговую стоимость заранее.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section" data-aos="zoom-out">
+    <div class="container">
+      <h2 class="cta-title">Готовы начать пользоваться зарубежными сервисами?</h2>
+      <p class="cta-subtitle">Присоединяйтесь и начните пользоваться любимыми сервисами без ограничений уже сегодня!</p>
+      <div class="cta-buttons">
+        <a href="#popup:myform" class="btn btn-lg btn-secondary contact-manager-btn">Связаться с менеджером</a>
+        <a href="#calculator" class="btn btn-lg btn-primary">Рассчитать стоимость</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- JavaScript -->
+  <script>
+    // Services data
+    const services = [
+      { name: "ChatGPT Plus", logo: "https://images.seeklogo.com/logo-png/42/1/open-ai-logo-png_seeklogo-428037.png", link: "https://project11876151.tilda.ws/gpt-full-info" },
+      { name: "PlayStation Plus", logo: "https://upload.wikimedia.org/wikipedia/commons/3/30/PlayStationPlus.png", link: "https://vcpay.ru/playstation_plus-full-info" },
+      { name: "Spotify Premium", logo: "https://images.seeklogo.com/logo-png/28/1/spotify-logo-png_seeklogo-284480.png", link: "https://project11876151.tilda.ws/spotify-full-info" },
+      { name: "YouTube Premium", logo: "https://images.seeklogo.com/logo-png/36/1/youtube-premium-logo-png_seeklogo-364940.png", link: "https://vcpay.ru/youtube_premium-full-info" },
+      { name: "Apple iCloud+", logo: "https://images.seeklogo.com/logo-png/42/1/apple-icloud-logo-png_seeklogo-426388.png", link: "https://vcpay.ru/apple_icloudampone" },
+      { name: "Apple One", logo: "https://images.seeklogo.com/logo-png/39/1/apple-one-logo-png_seeklogo-391015.png", link: "https://vcpay.ru/apple_icloudampone" },
+      { name: "Zoom Premium", logo: "https://images.seeklogo.com/logo-png/30/1/zoom-logo-png_seeklogo-306629.png", link: "https://vcpay.ru/zoom-full-info" },
+      { name: "Netflix", logo: "https://images.seeklogo.com/logo-png/25/1/netflix-logo-png_seeklogo-256429.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Adobe Creative Cloud", logo: "https://images.seeklogo.com/logo-png/0/1/adobe-logo-png_seeklogo-3452.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Canva Pro", logo: "https://images.seeklogo.com/logo-png/43/1/canva-logo-png_seeklogo-438258.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Midjourney", logo: "https://images.seeklogo.com/logo-png/50/1/midjourney-logo-png_seeklogo-501203.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Slack Pro", logo: "https://images.seeklogo.com/logo-png/35/1/slack-technologies-logo-png_seeklogo-354122.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Figma Professional", logo: "https://images.seeklogo.com/logo-png/38/1/figma-logo-png_seeklogo-385028.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Apple Music", logo: "https://seeklogo.com/images/A/apple-music-logo-1A4CFB4519-seeklogo.com.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Notion Team", logo: "https://images.seeklogo.com/logo-png/42/1/notion-logo-png_seeklogo-425508.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Miro Team Plan", logo: "https://images.seeklogo.com/logo-png/55/1/miro-logo-png_seeklogo-554491.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Dropbox Plus", logo: "https://images.seeklogo.com/logo-png/32/1/dropbox-logo-png_seeklogo-326268.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Disney+", logo: "https://seeklogo.com/images/D/disney-logo-D78FB54C93-seeklogo.com.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Amazon Prime Video", logo: "https://seeklogo.com/images/A/amazon-prime-video-logo-65CAC0D546-seeklogo.com.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Hulu", logo: "https://images.seeklogo.com/logo-png/32/1/hulu-logo-png_seeklogo-326335.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Tidal", logo: "https://images.seeklogo.com/logo-png/30/1/tidal-logo-png_seeklogo-306552.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Perplexity AI Pro", logo: "https://images.seeklogo.com/logo-png/61/1/perplexity-ai-logo-png_seeklogo-611677.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Microsoft 365", logo: "https://seeklogo.com/images/M/microsoft-365-logo-F2B0D35B25-seeklogo.com.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Google Workspace", logo: "https://images.seeklogo.com/logo-png/47/1/google-workspace-logo-png_seeklogo-477961.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Max (HBO)", logo: "https://images.seeklogo.com/logo-png/45/1/hbo-max-logo-png_seeklogo-456858.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Paramount+", logo: "https://images.seeklogo.com/logo-png/39/1/paramount-logo-png_seeklogo-397501.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Deezer", logo: "https://seeklogo.com/images/D/deezer-logo-F086CEDC99-seeklogo.com.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Apple TV+", logo: "https://images.seeklogo.com/logo-png/35/1/apple-tv-plus-logo-png_seeklogo-350508.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "Mailchimp", logo: "https://images.seeklogo.com/logo-png/37/1/mailchimp-logo-png_seeklogo-370271.png", link: "https://t.me/m/rXfYQVibN2Iy" },
+      { name: "OneDrive 100GB", logo: "https://images.seeklogo.com/logo-png/24/1/microsoft-onedrive-logo-png_seeklogo-249256.png", link: "https://t.me/m/rXfYQVibN2Iy" }
+    ];
+    
+    // Initialize on load
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize AOS animations
+      AOS.init({
+        duration: 800,
+        once: true
+      });
+      
+      // Initialize typed.js
+      const typed = new Typed('#typed', {
+        strings: ['Spotify', 'Netflix', 'ChatGPT Plus', 'YouTube Premium', 'Apple iCloud+'],
+        typeSpeed: 70,
+        backSpeed: 35,
+        smartBackspace: true,
+        loop: true,
+        showCursor: true,
+        cursorChar: '|',
+        startDelay: 500,
+        backDelay: 1000,
+      });
+      
+      // Initialize particles.js
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: 50 },
+          color: { value: "#cccccc" },
+          shape: { type: "circle" },
+          opacity: { value: 0.3, random: true },
+          size: { value: 3, random: true },
+          line_linked: { enable: false },
+          move: { 
+            enable: true, 
+            speed: 1, 
+            direction: "none", 
+            random: true, 
+            straight: false, 
+            out_mode: "out" 
+          }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: { enable: false },
+            onclick: { enable: false }
+          }
+        },
+        retina_detect: true
+      });
+      
+      // Load exchange rate from localStorage
+      loadExchangeRate();
+      
+      // Render services grid
+      renderServices();
+      
+      // Initialize daily discount service
+      initDailyDiscountService();
+      
+      // Setup event listeners
+      setupEventListeners();
+    });
+    
+    // Function to load exchange rate from localStorage
+    function loadExchangeRate() {
+      const storedRate = localStorage.getItem('exchangeRate');
+      const storedTime = localStorage.getItem('rateUpdateTime');
+      
+      if (storedRate) {
+        document.getElementById('current-rate').textContent = storedRate + " ₽";
+      }
+      
+      if (storedTime) {
+        document.getElementById('rate-update-time').textContent = storedTime;
+      }
+      
+      // Listen for storage events to update exchange rate in real-time
+      window.addEventListener('storage', function(e) {
+        if (e.key === "exchangeRate") {
+          document.getElementById('current-rate').textContent = e.newValue + " ₽";
+        }
+        if (e.key === "rateUpdateTime") {
+          document.getElementById('rate-update-time').textContent = e.newValue;
+        }
+      });
+    }
+    
+    // Format input with thousand separators
+    function formatInputThousands(input) {
+      let raw = input.value.replace(/\D/g, '');
+      if (!raw) {
+        input.value = '';
+        return;
+      }
+      
+      let formatted = raw.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+      input.value = formatted;
+    }
+    
+    // Setup event listeners
+    function setupEventListeners() {
+      // Add input formatter for USD input
+      const usdInput = document.getElementById('usdInput');
+      if (usdInput) {
+        usdInput.addEventListener('input', function() {
+          formatInputThousands(this);
+        });
+      }
+      
+      // Add event listener for "Show More" button
+      const showMoreBtn = document.getElementById('showMoreServices');
+      if (showMoreBtn) {
+        showMoreBtn.addEventListener('click', function() {
+          visibleServices += 8;
+          renderServices();
+        });
+      }
+      
+      // Add event listener for contact manager buttons
+      const contactButtons = document.querySelectorAll('.contact-manager-btn');
+      contactButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+          if (this.getAttribute('href') === '#popup:myform') return;
+          e.preventDefault();
+          openTildaForm();
+        });
+      });
+    }
+    
+    // Calculate price based on inputs
+    function calculatePrice() {
+      const usdInput = document.getElementById("usdInput").value;
+      const usdValue = parseFloat(usdInput.replace(/\s/g, "")) || 0;
+      const category = document.getElementById("categorySelect").value;
+      const rateText = document.getElementById("current-rate").textContent;
+      const displayedRate = parseFloat(rateText.replace(/[^\d.,]/g, '').replace(',', '.'));
+      
+      const baseRubles = usdValue * displayedRate;
+      let markup = 0;
+      let markupFormula = "";
+      
+      if (category === "hotels") {
+        markup = baseRubles * 0.1;
+        markupFormula = "10% от базовой суммы";
+      } else if (category === "services") {
+        markup = baseRubles * 0.2;
+        markupFormula = "20% от базовой суммы";
+      } else if (category === "vip") {
+        markup = baseRubles * 0.25;
+        markupFormula = "25% (срочные платежи)";
+      } else {
+        if (baseRubles <= 2000) {
+          markup = 270;
+          markupFormula = "Фиксированная наценка: 270 руб.";
+        } else if (baseRubles <= 9000) {
+          markup = baseRubles * 0.2;
+          markupFormula = "20% от базовой суммы";
+        } else {
+          markup = baseRubles * 0.15;
+          markupFormula = "15% от базовой суммы";
+        }
+      }
+      
+      const finalPrice = baseRubles + markup;
+      
+      // Update UI
+      document.getElementById("baseAmount").textContent =
+        new Intl.NumberFormat("ru-RU").format(baseRubles.toFixed(0)) + " ₽";
+      document.getElementById("markupAmount").textContent =
+        new Intl.NumberFormat("ru-RU").format(markup.toFixed(0)) + " ₽";
+      document.getElementById("finalAmount").textContent =
+        new Intl.NumberFormat("ru-RU").format(finalPrice.toFixed(0)) + " ₽";
+      document.getElementById("markupTooltipContent").textContent = markupFormula || "Наценка зависит от категории и суммы";
+      
+      // Update progress bars
+      const baseFraction = finalPrice > 0 ? baseRubles / finalPrice : 0;
+      const markupFraction = finalPrice > 0 ? markup / finalPrice : 0;
+      
+      document.getElementById("baseBar").style.width = (baseFraction * 100) + "%";
+      document.getElementById("markupBar").style.width = (markupFraction * 100) + "%";
+      
+      const basePercent = Math.round(baseFraction * 100);
+      const markupPercent = Math.round(markupFraction * 100);
+      
+      document.getElementById("baseValue").textContent = basePercent + "%";
+      document.getElementById("markupValue").textContent = markupPercent + "%";
+      document.getElementById("progressBars").style.display = "block";
+    }
+    
+    // Open Tilda form
+    function openTildaForm() {
+      window.location.href = '#popup:myform';
+      if (window.tcart && window.tcart.addEvent) {
+        window.tcart.addEvent('showpopup', 'myform');
+      }
+      return false;
+    }
+    
+    // Global variables for services display
+    let visibleServices = 8;
+    
+    // Render services grid
+    function renderServices() {
+      const servicesGrid = document.getElementById('services-grid');
+      servicesGrid.innerHTML = '';
+      
+      for (let i = 0; i < visibleServices && i < services.length; i++) {
+        const service = services[i];
+        const serviceCard = document.createElement('div');
+        serviceCard.className = 'service-card';
+        serviceCard.innerHTML = `
+          <a href="${service.link}" target="_blank">
+            <img src="${service.logo}" alt="${service.name}" class="service-icon">
+            <h3 class="service-name">${service.name}</h3>
+          </a>
+        `;
+        servicesGrid.appendChild(serviceCard);
+      }
+      
+      const showMoreBtn = document.getElementById('showMoreServices');
+      showMoreBtn.style.display = (visibleServices >= services.length) ? 'none' : 'inline-block';
+    }
+    
+    // Initialize daily discount service
+    function initDailyDiscountService() {
+      const today = new Date();
+      const dateString = `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`;
+      
+      function seededRandom(seed) {
+        const x = Math.sin(seed) * 10000;
+        return x - Math.floor(x);
+      }
+      
+      const seedValue = dateString.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+      const serviceIndex = Math.floor(seededRandom(seedValue) * services.length);
+      const featuredService = services[serviceIndex];
+      
+      const featuredContainer = document.getElementById('featured-service-container');
+      featuredContainer.innerHTML = `
+        <div class="featured-service">
+          <img src="${featuredService.logo}" alt="${featuredService.name}" class="featured-logo">
+          <h3 class="featured-name">${featuredService.name}</h3>
+          <p class="featured-discount">Скидка 10% только сегодня!</p>
+          <a href="${featuredService.link}" class="btn btn-primary featured-cta">Получить скидку</a>
+        </div>
+      `;
+      
+      // Start countdown timer
+      const endOfDay = new Date();
+      endOfDay.setHours(23, 59, 59, 999);
+      
+      function updateTimer() {
+        const nowTime = new Date();
+        const diff = endOfDay - nowTime;
+        
+        if (diff <= 0) {
+          document.getElementById('deal-timer').textContent = "Акция заканчивается сегодня!";
+          return;
+        }
+        
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+        
+        document.getElementById('deal-timer').textContent =
+          `Акция заканчивается через: ${hours.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      }
+      
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    }
+  </script>
+  <div id="footer"></div>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>

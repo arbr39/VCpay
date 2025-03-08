@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VCPay: Кабинет в разработке</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #f6f8f9 0%, #e5ebee 100%);
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        .icon {
+            width: 100px;
+            height: 100px;
+            color: #3b82f6;
+            margin: 0 auto 20px;
+        }
+        .title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .description {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .notice {
+            background-color: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .update {
+            color: #666;
+            font-size: 14px;
+        }
+        .update-link {
+            color: #3b82f6;
+            text-decoration: none;
+        }
+        .update-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+        </svg>
+        <h1 class="title">Личный кабинет в разработке</h1>
+        <p class="description">
+            Мы усердно работаем над созданием удобного и функционального личного кабинета. 
+            Совсем скоро вы сможете получить доступ ко всем необходимым функциям.
+        </p>
+        
+        <div class="notice">
+            <p>
+                <strong>Обратите внимание:</strong> 
+                В данный момент идёт активная разработка. 
+                Мы стараемся сделать личный кабинет максимально удобным и продуманным.
+            </p>
+        </div>
+
+        <div class="update">
+            <p>
+                Хотите быть в курсе? 
+                <a href="https://t.me/vcpay_news" class="update-link" target="_blank">Подпишитесь на наши обновления</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
